@@ -1,5 +1,8 @@
-﻿using ETicaretAPI.Application.Abstraction;
-using ETicaretAPI.Persistence.Concretes;
+﻿
+using ETicaretAPI.Persistence.Configurations;
+using ETicaretAPI.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -13,7 +16,12 @@ namespace ETicaretAPI.Persistence
     {
         public static void AddPersistenceServices(this IServiceCollection services)
         {
-            services.AddSingleton<IProductService, ProductService>();
+            ConfigurationManager configurationManager = new();
+            configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../../Presentation/ETicaretAPI.API"));
+            configurationManager.AddJsonFile("appsettings.json");
+
+            services.AddDbContext<ETicaretAPIDbContext>(options =>
+            options.UseSqlServer(Configuration.ConnectionString));
         }
     }
 }
