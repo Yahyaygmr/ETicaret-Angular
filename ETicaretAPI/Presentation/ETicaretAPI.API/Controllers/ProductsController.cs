@@ -20,17 +20,9 @@ namespace ETicaretAPI.API.Controllers
         [HttpPost("Post")]
         public async Task<IActionResult> Post()
         {
-            await _writeRepository.AddRangeAsync(new()
-            {
-                new(){Id=Guid.NewGuid(),Name="Product1",Price=100,Stock=10,CreatedDate=DateTime.Now },
-                new(){Id=Guid.NewGuid(),Name="Product2",Price=200,Stock=20,CreatedDate=DateTime.Now },
-                new(){Id=Guid.NewGuid(),Name="Product3",Price=300,Stock=30,CreatedDate=DateTime.Now },
-                new(){Id=Guid.NewGuid(),Name="Product4",Price=400,Stock=40,CreatedDate=DateTime.Now },
-                new(){Id=Guid.NewGuid(),Name="Product5",Price=500,Stock=50,CreatedDate=DateTime.Now },
-                new(){Id=Guid.NewGuid(),Name="Product6",Price=600,Stock=60,CreatedDate=DateTime.Now },
-            });
-            var count = await _writeRepository.SaveAsync();
-            return Ok($"{count} adet kayıt eklendi.");
+           await _writeRepository.AddAsync(new() { Name = "yeni Ürün", Price = 245, Stock = 20 });
+           await _writeRepository.SaveAsync();
+            return Ok(" kayıt eklendi.");
         }
         [HttpGet("id")]
         public async Task<IActionResult> Get(string id)
@@ -39,10 +31,13 @@ namespace ETicaretAPI.API.Controllers
             return Ok(p);
         }
         [HttpGet("Get")]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var values = _readRepository.GetAll();
-            return Ok(values);
+            var entity = await _readRepository.GetByIdAsync("05d18c90-3d13-4d80-1c7b-08dc85385dbd");
+            entity.Name = "Yeni Güncelleme";
+
+            await _writeRepository.SaveAsync();
+            return Ok("Güncelleme İşlemi Başarılı");
         }
     }
 }
