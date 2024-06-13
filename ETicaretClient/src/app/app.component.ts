@@ -9,6 +9,6 @@ declare var $: any
 export class AppComponent {
   title = 'ETicaretClient';
 }
-$(document).ready(()=>{
-  alert("dasdasadas")
-})
+// $(document).ready(()=>{
+//   alert("dasdasadas")
+// })
