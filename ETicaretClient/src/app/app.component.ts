@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { CustomTostrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-tostr.service';
 declare var $: any
 
 @Component({
@@ -8,7 +10,8 @@ declare var $: any
 })
 export class AppComponent {
   title = 'ETicaretClient';
+  constructor(){
+   
+  }
 }
-// $(document).ready(()=>{
-//   alert("dasdasadas")
-// })
+
