@@ -17,12 +17,14 @@ import { BaseComponent } from './base/base.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AdminModule,UiModule,
+    AdminModule, UiModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule
   ],
-  providers: [],
+  providers: [
+    { provide: "baseUrl", useValue: "https://localhost:44300/api", multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
