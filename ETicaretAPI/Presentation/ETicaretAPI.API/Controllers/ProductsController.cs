@@ -37,7 +37,7 @@ namespace ETicaretAPI.API.Controllers
 
             await _writeRepository.AddAsync(new() { Name = model.Name, Price = model.Price, Stock = model.Stock });
             await _writeRepository.SaveAsync();
-            return Ok(" kayıt eklendi.");
+            return Ok();
         }
         [HttpPut]
         public async Task<IActionResult> Put(UpdateProductViewModel model)
