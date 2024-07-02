@@ -34,7 +34,6 @@ namespace ETicaretAPI.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(CreateProductViewModel model)
         {
-
             await _writeRepository.AddAsync(new() { Name = model.Name, Price = model.Price, Stock = model.Stock });
             await _writeRepository.SaveAsync();
             return Ok();
