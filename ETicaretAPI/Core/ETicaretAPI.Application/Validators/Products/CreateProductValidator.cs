@@ -11,8 +11,8 @@ namespace ETicaretAPI.Application.Validators.Products
                 .NotEmpty()
                 .NotNull()
                 .WithMessage("Lütfen ürün adını boş geçmeyiniz")
+                .MinimumLength(5)
                 .MaximumLength(150)
-                .MaximumLength(5)
                 .WithMessage("Lütfen ürün adını 5 ile 150 karakter arasında giriniz.");
 
             RuleFor(p => p.Stock)
