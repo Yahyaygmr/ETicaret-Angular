@@ -27,7 +27,7 @@ namespace ETicaretAPI.API.Controllers
             return Ok(p);
         }
         [HttpGet]
-        public IActionResult Get([FromQuery] Pagination pagination)
+        public async Task<IActionResult> Get([FromQuery] Pagination pagination)
         {
             var totalCount = _readRepository.GetAll(false).Count();
             var entities = _readRepository.GetAll(false).Select(p => new
