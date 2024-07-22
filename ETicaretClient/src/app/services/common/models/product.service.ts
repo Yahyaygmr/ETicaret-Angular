@@ -33,13 +33,13 @@ export class ProductService {
 
 
   
-  async read(page: number = 0, size: number = 5, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<{ totalProductCount: number; products: List_Product[] }> {
+  async read(page: number = 0, size: number = 5, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<{ totalCount: number; entities: List_Product[] }> {
 
-    const promiseData: Promise<{ totalProductCount: number; products: List_Product[] }> =
-     this.httpClientService.get<{ totalProductCount: number; products: List_Product[] }>({
-      controller: "products",
-      queryString: `page=${page}&size=${size}`
-    }).toPromise();
+     const promiseData: Promise<{ totalCount: number; entities: List_Product[] }> =
+      this.httpClientService.get<{ totalCount: number; entities: List_Product[] }>({
+        controller: 'products',
+        queryString: `page=${page}&size=${size}`
+      }).toPromise();
 
     promiseData.then(d => successCallBack())
       .catch((errorResponse: HttpErrorResponse) => errorCallBack(errorResponse.message))
